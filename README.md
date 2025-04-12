@@ -31,8 +31,8 @@ A community-driven, open-source platform that empowers Indian farmers to list an
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/kisan-marketplace.git
-cd kisan-marketplace
+git clone https://github.com/nikshepkulli/Raitabandhu.git
+cd Raitabandhu
 ```
 
 ### 2. Install Dependencies
