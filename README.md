@@ -1,9 +1,13 @@
+# 🌾 Raitabandhu Marketplace
+
+[![Community](https://img.shields.io/badge/community-welcome-brightgreen.svg)](https://github.com/nikshepkulli/Raitabandhu/community)
+[![Discussions](https://img.shields.io/badge/chat-on%20GitHub%20Discussions-blueviolet)](https://github.com/nikshepkulli/Raitabandhu/discussions)
+[![Open Source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen)](https://github.com/nikshepkulli/Raitabandhu)
+
 
 ---
 
 ```md
-# 🌾 Raitabandhu Marketplace
-
 A community-driven, open-source platform that empowers Indian farmers to list and sell their produce directly to consumers. Farmers have full control over pricing, inventory, and delivery — promoting transparency, fair trade, and dignity.
 
 > 🚜 Built *for Bharat*, by Bharat. 🇮🇳
@@ -137,4 +141,6 @@ Let’s build this together. For farmers. For Bharat. 🌾🇮🇳
 
 Got questions or want to say hi?  
 Join the conversation:  
-📣 Discussions (soon) • 🧵 WhatsApp/Discord (coming up!)
+📣 Discussions
+Check our discussions here: [Discussions:](https://github.com/nikshepkulli/Raitabandhu/discussions)
+
