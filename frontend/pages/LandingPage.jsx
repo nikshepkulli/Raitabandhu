@@ -7,19 +7,7 @@ import farmhouseIcon from '../src/assets/farmhouseIcon.png'; // Import the image
 const LandingPage = () => {
   return (
     <div className="container">
-      {/* Header */}
-      <header className="header">
-        <div className="logo">
-          <span>🌾 Raitabandhu</span>
-        </div>
-        
-        <nav className="nav">
-          <a href="#" className="navLink">Home</a>
-          <a href="#" className="navLink">About</a>
-          <a href="#" className="navLink">Contact</a>
-          <button className="signInButton">SignIn</button>
-        </nav>
-      </header>
+    
       
       {/* Hero Section */}
       <section className="heroSection">
