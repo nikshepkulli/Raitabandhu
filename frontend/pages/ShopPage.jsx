@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './ShopPage.css'; // Assuming the CSS is saved in styles.css
 
 const ShopPage = () => {
@@ -31,7 +32,21 @@ const ShopPage = () => {
     : products.filter(product => product.category === selectedCategory);
 
   return (
-    <div className="container">    
+    <div className="container">
+      {/* Header */}
+      <header className="header">
+        <div className="logo">
+          <span>🌾 Raitabandhu</span>
+        </div>
+        
+        <nav className="nav">
+          <Link to="/" className="navLink">Home</Link>
+          <Link to="/shop" className="navLink">Shop</Link>
+          <Link to="/contact" className="navLink">Contact</Link>
+          <button className="signInButton">SignIn</button>
+        </nav>
+      </header>
+      
       {/* Hero Section with Search */}
       <section className="hero">
         <div className="hero-content">
@@ -190,43 +205,13 @@ const ShopPage = () => {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-column">
-            <div className="footer-logo">🌾 Raitabandhu</div>
-            <p>Connecting farmers directly with consumers across India for fresher produce and fairer prices.</p>
-          </div>
-          
-          <div className="footer-column">
-            <h3 className="footer-title">Quick Links</h3>
-            <ul className="footer-links">
-              <li className="footer-link"><a href="#" className="footer-link-anchor">Home</a></li>
-              <li className="footer-link"><a href="#" className="footer-link-anchor">Shop</a></li>
-              <li className="footer-link"><a href="#" className="footer-link-anchor">How It Works</a></li>
-            </ul>
-          </div>
-          
-          <div className="footer-column">
-            <h3 className="footer-title">For Farmers</h3>
-            <ul className="footer-links">
-              <li className="footer-link"><a href="#" className="footer-link-anchor">Join As Farmer</a></li>
-              <li className="footer-link"><a href="#" className="footer-link-anchor">Seller Guidelines</a></li>
-              <li className="footer-link"><a href="#" className="footer-link-anchor">Success Stories</a></li>
-              <li className="footer-link"><a href="#" className="footer-link-anchor">Farmer Resources</a></li>
-            </ul>
-          </div>
-          
-          <div className="footer-column">
-            <h3 className="footer-title">Contact Us</h3>
-            <ul className="footer-links">
-              <li className="footer-link">contact@raitabandhu.com</li>
-              <li className="footer-link">+91 98765 43210</li>
-              <li className="footer-link">Bangalore, Karnataka, India</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="footer-bottom">
-          <p>© 2025 Raita Bandhu Marketplace. All rights reserved.</p>
+        <div className="footerContent">
+          <p>&copy; 2025 Raitabandhu. All rights reserved.</p>
+          <nav className="footerNav">
+            <a href="#" className="footerLink">Privacy Policy</a>
+            <a href="#" className="footerLink">Terms of Service</a>
+            <a href="#" className="footerLink">Contact Us</a>
+          </nav>
         </div>
       </footer>
     </div>

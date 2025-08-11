@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, MapPin, Phone, Mail, Check } from 'lucide-react';
+import { Send, MapPin, Phone, Mail, CheckCircle2 } from 'lucide-react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ export default function ContactForm() {
       <div className="flex flex-col items-center justify-center min-h-screen bg-green-50 p-6">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
           <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-            <Check className="text-green-600" size={32} />
+            <CheckCircle2 className="text-green-600" size={32} />
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Message Sent!</h2>
           <p className="text-gray-600 mb-6">

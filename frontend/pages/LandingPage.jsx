@@ -1,13 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import farmerImage from '../src/assets/farmer.png'; // Adjust the path as necessary
 import './LandingPage.css'; // Import the CSS file
 import locationIcon from '../src/assets/locationIcon.png'; // Import the image
 import scaleIcon from '../src/assets/scaleIcon.png'; // Import the image
-import farmhouseIcon from '../src/assets/farmhouseIcon.png'; // Import the image
+import farmhouseIcon from '../src/assets/farmHouseIcon.png'; // Import the image
 const LandingPage = () => {
   return (
     <div className="container">
-    
+      {/* Header */}
+      <header className="header">
+        <div className="logo">
+          <span>🌾 Raitabandhu</span>
+        </div>
+        
+        <nav className="nav">
+          <Link to="/" className="navLink">Home</Link>
+          <Link to="/shop" className="navLink">Shop</Link>
+          <Link to="/contact" className="navLink">Contact</Link>
+          <button className="signInButton">SignIn</button>
+        </nav>
+      </header>
       
       {/* Hero Section */}
       <section className="heroSection">
@@ -82,7 +95,7 @@ const LocationIcon = () => (
     <img 
     src={locationIcon} 
     alt="Location Icon" 
-    style={{ width: '400px', height: '400px', objectFit: 'contain' }} 
+    style={{ width: '80px', height: '80px', objectFit: 'contain' }} 
   />
 );
 
@@ -90,7 +103,7 @@ const ScaleIcon = () => (
     <img 
     src={scaleIcon} 
     alt="Scale Icon" 
-    style={{ width: '400px', height: '400px', objectFit: 'contain' }} 
+    style={{ width: '80px', height: '80px', objectFit: 'contain' }} 
   />
 );
 
@@ -98,7 +111,7 @@ const FarmhouseIcon = () => (
     <img 
     src={farmhouseIcon} 
     alt="Farm House Icon" 
-    style={{ width: '400px', height: '400px', objectFit: 'contain' }} 
+    style={{ width: '80px', height: '80px', objectFit: 'contain' }} 
   />
 );
 
@@ -107,8 +120,7 @@ const FarmerIllustration = () => (
   <img 
     src={farmerImage} 
     alt="Farmer Illustration" 
-    style={{ width: '250px', height: '300px', objectFit: 'contain' }} 
+    className="w-64 h-80 object-contain"
   />
 );
-
 export default LandingPage;
