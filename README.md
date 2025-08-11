@@ -10,6 +10,8 @@ A full-stack application that connects farmers with consumers through intelligen
 - **Route Optimization**: Optimizes delivery routes using Google OR-Tools
 - **Real-time API**: RESTful backend with comprehensive validation
 - **Modern Frontend**: React-based user interface with responsive design
+- **Multi-page UI**: Landing page, shop, and contact form with consistent branding
+- **Responsive Design**: Mobile-friendly interface with Tailwind CSS styling
 
 ## 🏗️ Architecture
 
@@ -28,6 +30,16 @@ Raitabandhu/
 └── docker-compose.yml      # Container orchestration
 ```
 
+## 🎨 User Interface
+
+The frontend includes several key pages:
+
+- **Landing Page** (`/`): Welcome page with feature highlights and farmer testimonials
+- **Shop Page** (`/shop`): Browse and purchase fresh produce from local farmers
+- **Contact Form** (`/contact`): Get in touch with the Raitabandhu team
+
+All pages feature consistent branding, navigation, and responsive design optimized for both desktop and mobile devices.
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -41,7 +53,7 @@ Raitabandhu/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/Raitabandhu.git
+   git clone https://github.com/nikshepkulli/Raitabandhu.git
    cd Raitabandhu
    ```
 
@@ -65,19 +77,31 @@ Raitabandhu/
    npm install
    npm run dev
    ```
+   
+   The frontend will be available at `http://localhost:5173`
 
-### Using Docker
+### Using Docker (Recommended)
+
+For the easiest setup, use Docker Compose to run all services:
 
 ```bash
-# Start all services
-docker-compose up -d
+# Start all services (backend, frontend, MongoDB)
+docker-compose up --build -d
 
 # View logs
 docker-compose logs -f
 
 # Stop services
 docker-compose down
+
+# Rebuild and restart
+docker-compose up --build -d
 ```
+
+The application will be available at:
+- **Frontend**: `http://localhost:5173`
+- **Backend API**: `http://localhost:5000`
+- **MongoDB**: `mongodb://localhost:27017`
 
 ## 🔧 Configuration
 
@@ -206,6 +230,14 @@ cd frontend && npm run lint:fix
 ### Debug Mode
 
 Set `NODE_ENV=development` for detailed error messages.
+
+## 🆕 Recent Updates
+
+- **UI Consistency**: Fixed color scheme consistency between landing and shop pages
+- **Enhanced Security**: Added Helmet.js, rate limiting, and input validation  
+- **Docker Support**: Complete containerization with multi-stage builds
+- **Test Coverage**: Comprehensive API testing with Jest and Supertest
+- **Code Quality**: ESLint configuration and automated formatting
 
 ## 🤝 Contributing
 
