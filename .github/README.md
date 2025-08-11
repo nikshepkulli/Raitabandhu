@@ -1,146 +1,267 @@
-# 🌾 Raitabandhu Marketplace
+# Raitabandhu - Farmer-Order Matching System
 
-[![Community](https://img.shields.io/badge/community-welcome-brightgreen.svg)](https://github.com/nikshepkulli/Raitabandhu/community)
-[![Discussions](https://img.shields.io/badge/chat-on%20GitHub%20Discussions-blueviolet)](https://github.com/nikshepkulli/Raitabandhu/discussions)
-[![Open Source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen)](https://github.com/nikshepkulli/Raitabandhu)
+A full-stack application that connects farmers with consumers through intelligent order clustering, matching, and route optimization.
 
+## 🌾 Features
 
----
+- **Order Clustering**: Groups orders geographically and by delivery time using ML algorithms
+- **Smart Matching**: Matches clustered orders to farmers based on stock, location, and capacity
+- **Profitability Analysis**: Estimates costs and profits for each farmer assignment
+- **Route Optimization**: Optimizes delivery routes using Google OR-Tools
+- **Real-time API**: RESTful backend with comprehensive validation
+- **Modern Frontend**: React-based user interface with responsive design
+- **Multi-page UI**: Landing page, shop, and contact form with consistent branding
+- **Responsive Design**: Mobile-friendly interface with Tailwind CSS styling
 
-```md
-A community-driven, open-source platform that empowers Indian farmers to list and sell their produce directly to consumers. Farmers have full control over pricing, inventory, and delivery — promoting transparency, fair trade, and dignity.
+## 🏗️ Architecture
 
-> 🚜 Built *for Bharat*, by Bharat. 🇮🇳
-
----
-
-## 🚀 Features
-
-- 🧑‍🌾 **Farmer Profiles** – Farmers can register and manage their offerings
-- 🍅 **Produce Listings** – Upload product images, descriptions, and pricing
-- 📍 **Location-Based Discovery** – Customers can find nearby farmers
-- 📦 **Self-Delivery Option** – Farmers coordinate their own delivery or pickup
-- 💰 **Direct Payments** – Payments via UPI, Razorpay, or Cash on Delivery
-- 🌐 **Multilingual Interface** – Available in multiple Indian languages (Hindi, Kannada, Telugu, etc.)
-- 🧭 **Mobile & Responsive** – Designed to work on all devices, even low-end smartphones
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React / Next.js  
-- **Backend**: Node.js + Express  
-- **Database**: MongoDB  
-- **Authentication**: JWT, Google Sign-In  
-- **Payments**: Razorpay / UPI integration  
-- **Maps & Location**: Google Maps API or OpenStreetMap  
-- **Localization**: i18next (with JSON-based language packs)
-
----
-
-## 🔧 Quick Setup Instructions
-
-### 1. Clone the Repo
-
-```bash
-git clone https://github.com/nikshepkulli/Raitabandhu.git
-cd Raitabandhu
+```
+Raitabandhu/
+├── backend/                 # Node.js API server
+│   ├── models/             # MongoDB schemas (Farmer, Order)
+│   ├── routes/             # API endpoints
+│   ├── services/           # Business logic & Python integrations
+│   ├── __tests__/          # API tests
+│   └── server.js           # Express server setup
+├── frontend/               # React application
+│   ├── src/                # React components and assets
+│   ├── pages/              # Page components
+│   └── public/             # Static assets
+└── docker-compose.yml      # Container orchestration
 ```
 
-### 2. Run the Setup Script
+## 🎨 User Interface
+
+The frontend includes several key pages:
+
+- **Landing Page** (`/`): Welcome page with feature highlights and farmer testimonials
+- **Shop Page** (`/shop`): Browse and purchase fresh produce from local farmers
+- **Contact Form** (`/contact`): Get in touch with the Raitabandhu team
+
+All pages feature consistent branding, navigation, and responsive design optimized for both desktop and mobile devices.
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- Python 3.8+
+- MongoDB 6.0+
+- Docker & Docker Compose (optional)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/nikshepkulli/Raitabandhu.git
+   cd Raitabandhu
+   ```
+
+2. **Install Python dependencies**
+   ```bash
+   pip install scikit-learn numpy ortools
+   ```
+
+3. **Backend Setup**
+   ```bash
+   cd backend
+   npm install
+   cp .env.example .env
+   # Edit .env with your configuration
+   npm start
+   ```
+
+4. **Frontend Setup**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+   
+   The frontend will be available at `http://localhost:5173`
+
+### Using Docker (Recommended)
+
+For the easiest setup, use Docker Compose to run all services:
 
 ```bash
-chmod +x install.sh
-./install.sh
+# Start all services (backend, frontend, MongoDB)
+docker-compose up --build -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+
+# Rebuild and restart
+docker-compose up --build -d
 ```
 
-This will automatically install frontend & backend dependencies and create `.env` placeholders.
+The application will be available at:
+- **Frontend**: `http://localhost:5173`
+- **Backend API**: `http://localhost:5000`
+- **MongoDB**: `mongodb://localhost:27017`
 
----
+## 🔧 Configuration
 
-## ⚙️ Environment Variables
+### Environment Variables
 
-You’ll need to configure a `.env` file in both `backend/` and `frontend/`:
+Create a `.env` file in the backend directory:
 
 ```env
 PORT=5000
-MONGODB_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-RAZORPAY_KEY=your_key
-RAZORPAY_SECRET=your_secret
-GOOGLE_MAPS_API_KEY=your_key
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017/raitabandhu
+JWT_SECRET=your_strong_jwt_secret_min_32_chars_long
+FRONTEND_URL=http://localhost:3000
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+RAZORPAY_KEY=your_razorpay_key
+RAZORPAY_SECRET=your_razorpay_secret
 ```
 
----
+## 📚 API Documentation
 
-## 🧑‍💻 Local Development
+### Core Endpoints
 
-Start backend:
+#### POST /api/cluster-orders
+Groups orders by location and delivery time.
 
+**Request:**
+```json
+{
+  "orders": [
+    {
+      "location": { "lat": 12.34, "lon": 56.78 },
+      "deliveryWindow": {
+        "start": "2025-08-06T09:00:00Z",
+        "end": "2025-08-06T12:00:00Z"
+      },
+      "quantityKg": 100,
+      "cropType": "rice"
+    }
+  ]
+}
+```
+
+#### POST /api/match-cluster
+Matches clustered orders to available farmers.
+
+**Request:**
+```json
+{
+  "clusterOrders": [...],
+  "farmers": [
+    {
+      "cropType": "rice",
+      "availableStockKg": 200,
+      "minDispatchKg": 50,
+      "location": { "lat": 12.35, "lon": 56.79 },
+      "freshnessScore": 1.0
+    }
+  ]
+}
+```
+
+#### POST /api/estimate-profit
+Calculates profitability for farmer assignments.
+
+#### POST /api/optimize-route
+Optimizes delivery routes for multiple locations.
+
+## 🧪 Testing
+
+### Backend Tests
 ```bash
 cd backend
-npm run dev
+npm test
 ```
 
-Start frontend:
-
+### Frontend Tests
 ```bash
 cd frontend
-npm run dev
+npm test
 ```
 
----
+## 🛡️ Security Features
+
+- Input validation and sanitization
+- Rate limiting
+- Helmet.js security headers
+- Environment-based configuration
+- Non-root Docker containers
+- CORS protection
+
+## 🔍 Code Quality
+
+### Linting
+```bash
+# Backend
+cd backend && npm run lint
+
+# Frontend
+cd frontend && npm run lint
+```
+
+### Fix Issues
+```bash
+# Backend
+cd backend && npm run lint:fix
+
+# Frontend
+cd frontend && npm run lint:fix
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Python script errors**: Ensure Python dependencies are installed
+   ```bash
+   pip install scikit-learn numpy ortools
+   ```
+
+2. **MongoDB connection**: Verify MongoDB is running and connection string is correct
+
+3. **Port conflicts**: Check if ports 3000, 5000, or 27017 are already in use
+
+4. **Docker issues**: Ensure Docker daemon is running and you have sufficient permissions
+
+### Debug Mode
+
+Set `NODE_ENV=development` for detailed error messages.
+
+## 🆕 Recent Updates
+
+- **UI Consistency**: Fixed color scheme consistency between landing and shop pages
+- **Enhanced Security**: Added Helmet.js, rate limiting, and input validation  
+- **Docker Support**: Complete containerization with multi-stage builds
+- **Test Coverage**: Comprehensive API testing with Jest and Supertest
+- **Code Quality**: ESLint configuration and automated formatting
 
 ## 🤝 Contributing
 
-We welcome contributions from everyone — developers, designers, writers, translators, testers!
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### 🪜 How to Start:
+## 📄 License
 
-1. Fork the repository  
-2. Create a new branch: `git checkout -b feature/your-feature`  
-3. Make your changes  
-4. Commit: `git commit -m "Add: your feature"`  
-5. Push: `git push origin feature/your-feature`  
-6. Open a Pull Request 🚀
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Please read our [`CONTRIBUTING.md`](CONTRIBUTING.md) before submitting PRs.  
-If you're new, check out [`good first issue`](https://github.com/nikshepkulli/Raitabandhu/issues?q=label%3A"good+first+issue") to get started.
+## 🙏 Acknowledgments
 
----
+- [scikit-learn](https://scikit-learn.org/) for machine learning algorithms
+- [Google OR-Tools](https://developers.google.com/optimization) for route optimization
+- [MongoDB](https://www.mongodb.com/) for data storage
+- [React](https://reactjs.org/) for frontend framework
 
-## 🌍 Languages Supported
+## 📞 Support
 
-- English 🇬🇧  
-- Hindi 🇮🇳  
-- Kannada 🇮🇳  
-- Telugu 🇮🇳  
-- Tamil 🇮🇳  
-- Bengali 🇮🇳  
-- (More coming soon — help us translate!)
-
-All language strings are managed in `frontend/src/i18n/*.json`.
+For support, email support@raitabandhu.com or join our Slack channel.
 
 ---
 
-## 🗺️ Project Board
-
-Check our open tasks and progress here: [Project Board](https://github.com/nikshepkulli/Raitabandhu/projects)
-
----
-
-## 🙌 Acknowledgements
-
-This project is inspired by the need to create a more equitable agricultural supply chain in India — giving control back to the hands of farmers.
-
-Let’s build this together. For farmers. For Bharat. 🌾🇮🇳
-
----
-
-## 💬 Community
-
-Got questions or want to say hi?  
-Join the conversation:  
-📣 Discussions
-Check our discussions here: [Discussions:](https://github.com/nikshepkulli/Raitabandhu/discussions)
-
+Made with 🌾 by the Raitabandhu Team
